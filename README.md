@@ -1,5 +1,5 @@
 # Asset Closet - IT Asset Inventory Management
-
+https://sunil-agasti.github.io/asset-closet-app/storyboard.html
 Enterprise IT asset tracking system for global storage closet operations. Manages check-in, check-out, inventory tracking, user audit, and reporting for laptops, monitors, keyboards, and other equipment.
 
 ## Tech Stack
