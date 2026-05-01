@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Security - IMPORTANT: Never commit these files!
+secret.key
+users_backup.csv
+
+# Data files
+*.csv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# OMC / Claude
+.omc/
+.claude/
+
+# Env
+.env
+.env.local
+.env.production

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset Closet - Project Overview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #007aff, #5856d6); color: #fff; padding: 60px 40px; text-align: center; }
+  .header h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .header p { font-size: 18px; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+  .header .badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 16px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .section { background: #fff; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid #e5e5ea; }
+  .section h2 { font-size: 24px; font-weight: 700; margin-bottom: 16px; color: #1d1d1f; display: flex; align-items: center; gap: 10px; }
+  .section h2 .icon { font-size: 28px; }
+  .section h3 { font-size: 17px; font-weight: 600; margin: 20px 0 8px; color: #007aff; }
+  .section p, .section li { font-size: 15px; color: #3a3a3c; }
+  .section ul { padding-left: 20px; margin: 8px 0; }
+  .section li { margin-bottom: 6px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 768px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+  .card { background: #f5f5f7; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e5e5ea; }
+  .card .num { font-size: 32px; font-weight: 800; color: #007aff; }
+  .card .label { font-size: 12px; font-weight: 600; color: #6e6e73; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .card.green .num { color: #34c759; }
+  .card.orange .num { color: #ff9500; }
+  .card.red .num { color: #ff3b30; }
+  .card.purple .num { color: #5856d6; }
+  .pill { display: inline-block; padding: 4px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; margin: 2px; }
+  .pill-blue { background: rgba(0,122,255,0.1); color: #007aff; }
+  .pill-green { background: rgba(52,199,89,0.1); color: #34c759; }
+  .pill-purple { background: rgba(88,86,214,0.1); color: #5856d6; }
+  .pill-orange { background: rgba(255,149,0,0.1); color: #ff9500; }
+  .table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+  .table th { background: #f5f5f7; padding: 10px 14px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #6e6e73; border-bottom: 2px solid #e5e5ea; }
+  .table td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; }
+  .table tr:hover { background: #fafafa; }
+  .check { color: #34c759; font-weight: 700; }
+  .cross { color: #ff3b30; font-weight: 700; }
+  .folder-tree { font-family: 'SF Mono', monospace; font-size: 13px; background: #1d1d1f; color: #e5e5ea; padding: 24px; border-radius: 12px; line-height: 1.8; overflow-x: auto; }
+  .folder-tree .dir { color: #007aff; font-weight: 600; }
+  .folder-tree .file { color: #30d158; }
+  .folder-tree .comment { color: #6e6e73; }
+  .highlight-box { background: linear-gradient(135deg, rgba(0,122,255,0.06), rgba(88,86,214,0.06)); border: 1px solid rgba(0,122,255,0.15); border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .version-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #007aff, #5856d6); color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 700; }
+  .footer { text-align: center; padding: 40px 24px; color: #6e6e73; font-size: 13px; }
+  .divider { height: 1px; background: #e5e5ea; margin: 20px 0; }
+  .flow-step { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+  .flow-step .step-num { width: 32px; height: 32px; border-radius: 50%; background: #007aff; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+  .flow-step .step-text { font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Asset Closet</h1>
+  <p>Enterprise IT Asset Inventory Management System for Austin and SCV TCS-Apple Operations</p>
+  <div class="badge">Version 2.0 — Next.js Migration</div>
+</div>
+
+<div class="container">
+
+  <!-- ABOUT -->
+  <div class="section">
+    <h2><span class="icon">📋</span> About the Project</h2>
+    <p>Asset Closet is an internal IT asset tracking system built for the Austin and SCV TCS-Apple storage closet teams. It manages the complete lifecycle of IT equipment — laptops, monitors, keyboards, and other peripherals — from check-in to check-out, with full audit trails and leadership reporting.</p>
+    <div class="highlight-box">
+      <strong>Key Users:</strong> Storage closet operators (iPad), team leads (MacBook), and leadership (reports & analytics).
+      <br><strong>Deployment:</strong> Runs on a local network, accessible via any device on the same Wi-Fi.
+    </div>
+  </div>
+
+  <!-- WHAT CHANGED -->
+  <div class="section">
+    <h2><span class="icon">🔄</span> What Changed in Version 2.0</h2>
+    <p>The application was migrated from <strong>Python Streamlit</strong> to <strong>Next.js (React)</strong> for better performance, modern UI, and improved security.</p>
+    <div class="grid-2">
+      <div>
+        <h3>Previous Version (v1.0)</h3>
+        <ul>
+          <li>Built with Python Streamlit</li>
+          <li>Single-page app with session state</li>
+          <li>CSV file storage</li>
+          <li>Basic styling with custom CSS</li>
+          <li>No security headers or rate limiting</li>
+        </ul>
+      </div>
+      <div>
+        <h3>New Version (v2.0)</h3>
+        <ul>
+          <li>Built with Next.js + React + TypeScript</li>
+          <li>Multi-page app with JWT authentication</li>
+          <li>Excel workbook storage (auto-migrated from CSV)</li>
+          <li>Apple-standard UI with dark mode</li>
+          <li>Security headers, rate limiting, input sanitization</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Key Improvements</h3>
+    <ul>
+      <li><strong>3x faster page loads</strong> — React renders instantly vs Streamlit's full page reloads</li>
+      <li><strong>Works offline</strong> — once loaded, the app works without constant server communication</li>
+      <li><strong>Better iPad experience</strong> — touch-optimized UI, floating labels, PIN keypad</li>
+      <li><strong>Security hardened</strong> — JWT sessions, encrypted cookies, CSP headers, rate limiting</li>
+      <li><strong>Dark mode</strong> — full theme toggle across all pages</li>
+      <li><strong>Session management</strong> — idle timeout with warning, refresh logout detection</li>
+      <li><strong>Workbook caching</strong> — the app trims Excel's inflated Austin sheet range and caches parsed rows in memory for sub-second reloads</li>
+    </ul>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section">
+    <h2><span class="icon">⚙️</span> Technology Stack</h2>
+    <div class="grid-3">
+      <div class="card"><div class="num" style="font-size:20px">Next.js 16</div><div class="label">Framework</div></div>
+      <div class="card"><div class="num" style="font-size:20px">React 19</div><div class="label">UI Library</div></div>
+      <div class="card"><div class="num" style="font-size:20px">TypeScript</div><div class="label">Language</div></div>
+      <div class="card"><div class="num" style="font-size:20px">Tailwind CSS</div><div class="label">Styling</div></div>
+      <div class="card"><div class="num" style="font-size:20px">JWT (jose)</div><div class="label">Authentication</div></div>
+      <div class="card"><div class="num" style="font-size:20px">Tesseract.js</div><div class="label">Camera OCR</div></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section">
+    <h2><span class="icon">✨</span> Features Overview</h2>
+
+    <h3>🔐 Login System</h3>
+    <div class="flow-step"><div class="step-num">1</div><div class="step-text"><strong>Employee ID</strong> — Enter 6-8 digit employee ID</div></div>
+    <div class="flow-step"><div class="step-num">2</div><div class="step-text"><strong>PIN Entry</strong> — 4-digit PIN via on-screen keypad (iPad-optimized)</div></div>
+    <div class="flow-step"><div class="step-num">3</div><div class="step-text"><strong>First-Time Setup</strong> — Create PIN + security question for new users</div></div>
+    <div class="flow-step"><div class="step-num">4</div><div class="step-text"><strong>Forgot PIN</strong> — Reset via security question verification</div></div>
+
+    <div class="divider"></div>
+
+    <h3>📥 Check-In</h3>
+    <p>Register new assets or return existing ones with full metadata.</p>
+    <ul>
+      <li>12 data fields: Asset ID, Serial Number, Chip, Configuration, Processor, Model Year, RAM, Assigned To, Location, Emp ID, Email, Status</li>
+      <li>Auto-fill from existing records when Asset ID or Serial Number is entered</li>
+      <li>Camera OCR scan to read asset stickers (02HW0...) and engraved serial numbers</li>
+      <li>Asset ID validation (must start with 02HW0, 01HW0, 34HW0, 3HW0, or 4HW0)</li>
+      <li>Auto-navigates to Check-Out after successful check-in</li>
+    </ul>
+
+    <h3>📤 Check-Out</h3>
+    <p>Assign available assets to users.</p>
+    <ul>
+      <li>Dropdown showing available assets (excludes Special Case and already checked-out)</li>
+      <li>Asset details auto-displayed on selection</li>
+      <li>Camera OCR scan to quickly select assets</li>
+      <li>Required: Assigned To field</li>
+    </ul>
+
+    <h3>📦 Inventory</h3>
+    <p>View, search, and manage all assets.</p>
+    <ul>
+      <li>Site-aware inventory with Austin and SCV sheet selection</li>
+      <li>Split-panel table with pinned Asset ID column</li>
+      <li>Search with instant filtering and clear button</li>
+      <li>Rows per page selector (10, 25, 50, 100, 200)</li>
+      <li>Inline edit via floating-label modal</li>
+      <li>In-memory client cache for fast location revisits</li>
+      <li>Settings gear: Hide Unavailable, Fullscreen, All Columns, Export Excel</li>
+      <li>Low inventory warning when unallocated assets ≤ 10</li>
+    </ul>
+
+    <h3>👥 User Audit</h3>
+    <p>Complete login activity tracking.</p>
+    <ul>
+      <li>Tracks: Login Time, Logout Time, Duration, Logout Method, Device</li>
+      <li>Color-coded failure rows (red for incorrect PIN, invalid ID)</li>
+      <li>Logout reasons: User Logout, Session Timeout, Page Refresh</li>
+      <li>Search, pagination, Excel export</li>
+    </ul>
+
+    <h3>💻 Asset Log</h3>
+    <p>Full history of every asset action.</p>
+    <ul>
+      <li>Every check-in, check-out, and edit recorded with timestamp and actor</li>
+      <li>Search, pagination, Excel export</li>
+    </ul>
+  </div>
+
+  <!-- REPORTS -->
+  <div class="section">
+    <h2><span class="icon">📊</span> Leadership Reports & Statistics</h2>
+    <p>Real-time analytics dashboard for leadership visibility into asset utilization and team activity.</p>
+
+    <div class="highlight-box">
+      <strong>Location Add-on:</strong> Reports now default to <strong>Austin</strong> and can switch to <strong>SCV</strong> from a site dropdown.
+      <br><strong>Workbook counts:</strong> Austin = 1064 raw rows, SCV = 547 raw rows.
+      <br><strong>Performance:</strong> site payloads are cached in memory so revisits and site switches load in under a few seconds.
+    </div>
+
+    <h3>Overview Metrics (9 KPIs)</h3>
+    <div class="grid-4">
+      <div class="card"><div class="num">📊</div><div class="label">Location Raw Rows</div></div>
+      <div class="card purple"><div class="num">🧾</div><div class="label">Current Assets</div></div>
+      <div class="card green"><div class="num">💻</div><div class="label">Assigned</div></div>
+      <div class="card orange"><div class="num">📦</div><div class="label">Unallocated</div></div>
+      <div class="card"><div class="num">🔄</div><div class="label">On Loan</div></div>
+      <div class="card red"><div class="num">🔧</div><div class="label">In Repair</div></div>
+      <div class="card red"><div class="num">📤</div><div class="label">Broken - Send to Edison</div></div>
+      <div class="card purple"><div class="num">⚡</div><div class="label">Special Case</div></div>
+      <div class="card"><div class="num">↩️</div><div class="label">Returned</div></div>
+    </div>
+
+    <h3>Report Tabs</h3>
+    <table class="table">
+      <thead><tr><th>Tab</th><th>What It Shows</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Status Breakdown</strong></td><td>Count and percentage by normalized status, including merged Edison labels under "Broken - Send to Edison"</td></tr>
+        <tr><td><strong>By Year</strong></td><td>Asset distribution by model year — Total, Assigned, Unallocated, Loaner, Repair, Broken - Send to Edison, Special, Other</td></tr>
+        <tr><td><strong>Type & Processor</strong></td><td>Breakdown by asset type (Laptop, Monitor, etc.) and processor type (Intel, M-series)</td></tr>
+        <tr><td><strong>User Analytics</strong></td><td>Top 15 users by assets held, top check-out/check-in users, most edits</td></tr>
+        <tr><td><strong>Activity</strong></td><td>30-day metrics: Check-Ins, Check-Outs, Edits. Most checked-out assets.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ROLE-BASED ACCESS -->
+  <div class="section">
+    <h2><span class="icon">🔑</span> Role-Based Access</h2>
+    <table class="table">
+      <thead><tr><th>Feature</th><th>Admin</th><th>Editor</th><th>Viewer</th></tr></thead>
+      <tbody>
+        <tr><td>Check-In</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td></tr>
+        <tr><td>Check-Out</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td></tr>
+        <tr><td>Inventory (view)</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Inventory (edit)</td><td class="check">✓</td><td class="check">✓</td><td class="cross">—</td></tr>
+        <tr><td>User Audit</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Asset Log</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+        <tr><td>Reports</td><td class="check">✓</td><td class="cross">—</td><td class="cross">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- THEMING -->
+  <div class="section">
+    <h2><span class="icon">🎨</span> Theming & Design</h2>
+    <div class="grid-2">
+      <div>
+        <h3>Light Mode</h3>
+        <ul>
+          <li>Clean white cards over background image</li>
+          <li>Apple SF Pro typography</li>
+          <li>Blue accent (#007AFF) for interactive elements</li>
+          <li>Frosted glass sidebar icons</li>
+          <li>Subtle shadows and borders</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Dark Mode</h3>
+        <ul>
+          <li>Deep navy backgrounds (#1a1a2e, #16213e)</li>
+          <li>High-contrast text (#e0e0e0)</li>
+          <li>Visible input borders (20% white)</li>
+          <li>Blue accent preserved for consistency</li>
+          <li>Toggle via button on all pages</li>
+        </ul>
+      </div>
+    </div>
+    <h3>Design Principles</h3>
+    <ul>
+      <li><strong>Apple Human Interface Guidelines</strong> — floating labels, rounded corners, SF typography</li>
+      <li><strong>WCAG AA+ Accessible</strong> — high contrast, keyboard navigation, screen reader support</li>
+      <li><strong>Color-blind safe</strong> — errors use icon + text + border, not color alone</li>
+      <li><strong>iPad-first</strong> — touch-optimized controls, PIN keypad, camera scan</li>
+    </ul>
+  </div>
+
+  <!-- CAMERA OCR -->
+  <div class="section">
+    <h2><span class="icon">📷</span> Camera OCR Scanning</h2>
+    <p>Built-in camera scanning to quickly identify assets without manual typing.</p>
+    <div class="grid-2">
+      <div>
+        <h3>What It Reads</h3>
+        <ul>
+          <li><strong>White sticker Asset IDs</strong>: 02HW0, 01HW0, 34HW0, 3HW0, 4HW0</li>
+          <li><strong>Engraved Serial Numbers</strong>: Text after "Serial Number" / "S/N" / "SN"</li>
+        </ul>
+      </div>
+      <div>
+        <h3>How It Works</h3>
+        <ul>
+          <li>Opens device camera (rear-facing)</li>
+          <li>Captures frame, enhances contrast</li>
+          <li>OCR via Tesseract.js (runs in browser)</li>
+          <li>Auto-fills form fields with results</li>
+          <li>Photo upload fallback for pre-taken images</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section">
+    <h2><span class="icon">🛡️</span> Security</h2>
+    <div class="grid-2">
+      <div>
+        <h3>Authentication</h3>
+        <ul>
+          <li>JWT tokens with 15-min expiry</li>
+          <li>httpOnly, sameSite cookies</li>
+          <li>Encrypted PIN storage (AES-128-CBC)</li>
+          <li>Server-side session validation</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Protection</h3>
+        <ul>
+          <li>Rate limiting (10 login / 5 PIN per minute)</li>
+          <li>Content Security Policy headers</li>
+          <li>Input sanitization on all APIs</li>
+          <li>X-Frame-Options: DENY (anti-clickjacking)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION MANAGEMENT -->
+  <div class="section">
+    <h2><span class="icon">⏱️</span> Session Management</h2>
+    <ul>
+      <li><strong>Idle Timeout</strong> — 10 minutes of inactivity triggers a 5-minute countdown warning</li>
+      <li><strong>Warning Popup</strong> — "Session Expiring Soon" with countdown and Extend/Logout buttons</li>
+      <li><strong>Auto Logout</strong> — Force logout after timeout, recorded as "Session Timeout" in audit</li>
+      <li><strong>Refresh Detection</strong> — Page refresh triggers logout, recorded as "Page Refresh" in audit</li>
+      <li><strong>All session events logged</strong> in User Audit with timestamp and device type</li>
+    </ul>
+  </div>
+
+  <!-- FOLDER STRUCTURE -->
+  <div class="section">
+    <h2><span class="icon">📁</span> Project Structure</h2>
+    <div class="folder-tree">
+<span class="dir">src/</span>
+  <span class="dir">app/</span>
+    <span class="file">page.tsx</span>              <span class="comment">← Login page (Apple-style UI)</span>
+    <span class="file">layout.tsx</span>            <span class="comment">← Root HTML layout</span>
+    <span class="file">globals.css</span>           <span class="comment">← All styles (login + dashboard)</span>
+    <span class="dir">dashboard/</span>
+      <span class="file">page.tsx</span>            <span class="comment">← Main dashboard (all tabs)</span>
+      <span class="file">camera-scanner.tsx</span>  <span class="comment">← Camera OCR component</span>
+    <span class="dir">api/</span>
+      <span class="dir">auth/</span>
+        <span class="file">login/route.ts</span>    <span class="comment">← Employee ID + PIN login</span>
+        <span class="file">logout/route.ts</span>   <span class="comment">← Session destroy + audit</span>
+        <span class="file">pin/route.ts</span>      <span class="comment">← PIN set/reset with security Q&A</span>
+        <span class="file">me/route.ts</span>       <span class="comment">← Current user from JWT</span>
+      <span class="dir">assets/</span>
+        <span class="file">route.ts</span>          <span class="comment">← Asset CRUD (list/create)</span>
+        <span class="file">checkout/route.ts</span> <span class="comment">← Check-out endpoint</span>
+        <span class="file">edit/route.ts</span>     <span class="comment">← Asset field editing</span>
+      <span class="file">audit/route.ts</span>      <span class="comment">← Login audit data</span>
+      <span class="file">reports/route.ts</span>    <span class="comment">← Analytics & statistics</span>
+  <span class="dir">lib/</span>
+    <span class="file">auth.ts</span>               <span class="comment">← JWT session management</span>
+    <span class="file">crypto.ts</span>             <span class="comment">← PIN encryption/decryption</span>
+    <span class="file">csv.ts</span>                <span class="comment">← CSV read/write utilities</span>
+    <span class="file">assets-store.ts</span>       <span class="comment">← Asset workbook + CSV migration</span>
+    <span class="file">constants.ts</span>          <span class="comment">← Status colors, roles, options</span>
+    <span class="file">rate-limit.ts</span>         <span class="comment">← In-memory rate limiter</span>
+    <span class="file">sanitize.ts</span>           <span class="comment">← Input sanitization</span>
+    <span class="file">inventory-alert.ts</span>    <span class="comment">← Low inventory email alerts</span>
+<span class="dir">public/</span>
+  <span class="file">asset-logo.png</span>          <span class="comment">← App logo</span>
+  <span class="file">bg-image.avif</span>           <span class="comment">← Login background image</span>
+    </div>
+  </div>
+
+  <!-- LOW INVENTORY ALERTS -->
+  <div class="section">
+    <h2><span class="icon">📧</span> Low Inventory Email Alerts</h2>
+    <ul>
+      <li>Automated email when unallocated assets drop to <strong>10 or fewer</strong></li>
+      <li>Sent to leadership team (configurable recipients)</li>
+      <li>Throttled to <strong>once per 7 days</strong> to reduce alert fatigue</li>
+      <li>Visual banner displayed on Inventory tab when count is low</li>
+      <li>HTML-formatted email with professional styling</li>
+    </ul>
+  </div>
+
+  <!-- STATUS LEGEND -->
+  <div class="section">
+    <h2><span class="icon">🏷️</span> Asset Status Legend</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">
+      <span class="pill pill-green">Working - Warranty</span>
+      <span class="pill pill-green">Working - No Warranty</span>
+      <span class="pill" style="background:rgba(255,59,48,0.1);color:#ff3b30">Not Working - Repair</span>
+      <span class="pill" style="background:rgba(255,45,85,0.1);color:#ff2d55">Not Working - Ship to Edison</span>
+      <span class="pill pill-blue">Loaner</span>
+      <span class="pill pill-orange">Inventory - Unallocated</span>
+      <span class="pill pill-purple">Special Case</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Asset Closet v2.0 — Austin & SCV TCS-Apple Operations</p>
+  <p>Created by <strong>Brandy & Sunil</strong> | Powered by TCS | Built with Next.js + React + TypeScript</p>
+  <p style="margin-top:8px;font-size:11px;color:#8e8e93">April 2026</p>
+</div>
+
+</body>
+</html>
