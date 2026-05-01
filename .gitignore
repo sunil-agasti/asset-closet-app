@@ -14,6 +14,7 @@ users_backup.csv
 
 # Data files
 *.csv
+*.xlsx
 
 # IDE
 .vscode/
