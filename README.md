@@ -1,6 +1,6 @@
 # Asset Closet - IT Asset Inventory Management
 
-Enterprise IT asset tracking system for Austin TCS-Apple storage closet operations. Manages check-in, check-out, inventory tracking, user audit, and reporting for laptops, monitors, keyboards, and other equipment.
+Enterprise IT asset tracking system for global storage closet operations. Manages check-in, check-out, inventory tracking, user audit, and reporting for laptops, monitors, keyboards, and other equipment.
 
 ## Tech Stack
 
