@@ -5,7 +5,7 @@ import { resolveAppPath } from "./app-root";
 const STATE_FILE = resolveAppPath("low_inventory_alert_state.json");
 const THRESHOLD = 10;
 const INTERVAL_DAYS = 7;
-const RECIPIENTS = ["bagasti@apple.com"];
+const RECIPIENTS = ["john@company.com"];
 
 interface AlertState {
   low_active: boolean;
